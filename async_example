@@ -1,0 +1,32 @@
+# Импорт асинхронной версии API Playwright для управления браузером
+from playwright.async_api import async_playwright
+# Импорт библиотеки для работы с асинхронными операциями
+import asyncio
+
+# Определение асинхронной основной функции
+async def main():
+    # Запуск контекста Playwright (автоматическое закрытие при выходе)
+    async with async_playwright() as p:
+        # Запуск браузера Chromium в видимом режиме (headless=False)
+        browser = await p.chromium.launch(headless=False)
+        
+        # Создание новой вкладки/страницы в браузере
+        page = await browser.new_page()
+        
+        # Переход на указанный URL-адрес веб-страницы
+        await page.goto("https://na-yazyke-kitov.tilda.ws/")
+        
+        # Ожидание полной загрузки страницы (когда сетевые запросы прекращаются)
+        await page.wait_for_load_state("networkidle")
+        
+        # Создание скриншота текущей страницы и сохранение в файл
+        await page.screenshot(path="screenshoot/homepage2.png")
+        
+        # Вывод в консоль заголовка текущей страницы
+        print(await page.title())
+        
+        # Закрытие браузера и освобождение ресурсов
+        await browser.close()
+
+# Запуск асинхронной функции main через управление событийным циклом asyncio
+asyncio.run(main())
