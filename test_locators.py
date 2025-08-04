@@ -2,7 +2,7 @@
 # Page - класс для управления браузерной страницей
 # expect - функция для утверждений (assertions) в тестах
 from playwright.sync_api import Page, expect
-import pytest # ide VSC то обязательно нужен 
+import pytest # обязательно нужен 
 @pytest.fixture(autouse=True)  #фикстура предусловие выполнение кода при автоиспользрвани тру, не обязательно прокидывать фикстуру в начале каждого теста 
 def open_litres(page: Page):
     page.goto("https://www.litres.ru/")     # Вызов метода goto() у объекта page - переход на указанный URL
@@ -28,4 +28,5 @@ def test_locator_alt(page:Page, open_litres):
 
 def test_locator_xpath(page: Page, open_litres):
     expect(page.locator("xpath=//a[@title='YouTube']")).to_be_visible()  # Ожидание, что элемент с заголовком "YouTube" становится видимым
+
 
