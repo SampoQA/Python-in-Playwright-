@@ -70,3 +70,9 @@ def browser():
 def test_yandex(browser):
     page = browser.new_page()
     page.goto("https://ya.ru/")
+
+
+Дождаться загрузки
+
+page.goto("https://playwright-todomvc.antonzimaiev.repl.co/#/", wait_until='domcontentloaded')
+
