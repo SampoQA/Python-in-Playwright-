@@ -13,5 +13,7 @@ Playwright
 запуск отдельного теста  из файла    pytest test_locators.py::test_locator_placeholder --headed
 Переход в конкретную папку cd tests
 Возврат на директорию выше cd ..
+создание папки md
+содержимое папки ls
 
     yield page использовать аккуратно так как без него редакторы не подтягивает остальные объекты поэтому обязательно использовать (page: Page Ex - def open_litres(page: Page):
