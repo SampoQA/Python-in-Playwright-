@@ -57,3 +57,16 @@ pytest --device="iPhone 13 Mini"
 --screenshot Должен ли автоматически делаться снимок экрана после каждого теста. on, off или only-on-failure (по умолчанию: off).
 
 --full-page-screenshot - Следует ли делать скриншот всей страницы при ошибке. По умолчанию снимается только область просмотра. Требуется, чтобы параметр --screenshot был включен (по умолчанию: off).
+
+как запустить Яндекс браузер 
+
+@pytest.fixture(scope="session")
+def browser():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(channel="chromium",executable_path="путь до яндекс браузера", headless=False)
+        yield browser
+        browser.close()
+
+def test_yandex(browser):
+    page = browser.new_page()
+    page.goto("https://ya.ru/")
